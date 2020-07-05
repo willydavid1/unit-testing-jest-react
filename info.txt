@@ -1,0 +1,26 @@
+¿Qué es un test?
+Como developers tenemos que garantizar que el codigo escrito cumpla con ciertos requisitos/expectativas. Esto lo hacemos por medio de una prueba (test).
+
+Esto nos asegura:
+
+Nuestro codigo cumple con el standar.
+Enviamos a producción sin errores.
+Tipos de pruebas
+Debemos tener en cuenta que existen dos tipos de pruebas:
+
+-Funcionales.
+    #Pruebas Unitarias.- Se prueban pequeñas partes de nuestro codigo asegurandonos así que cumplen con lo que se desea. (En desarrollo web las pruebas se traducen a probar cada sección de la pagina y todas las interacciones en ellas).
+-No funcionales.
+
+Jest
+Jest es un framework de JavaScript para pruebas.
+
+
+----
+Instalamos jest como devDependencies
+La carpeta __test__ es un estandar (best practice) para poner alli las pruebas. | NAME.test.js
+
+// La funcion test recibe dos parametros: Un string que describe lo que va a pasar. Función anonima que viene lo que se va a probar
+// La función expect: valor de entrada, sobre que lo voy a comparar usando .toMach()
+
+modificar el package.json el script por jest y correrlo con npm test o npm run test
