@@ -24,3 +24,17 @@ La carpeta __test__ es un estandar (best practice) para poner alli las pruebas. 
 // La función expect: valor de entrada, sobre que lo voy a comparar usando .toMach()
 
 modificar el package.json el script por jest y correrlo con npm test o npm run test
+
+----
+Para correr pruebas directamente sobre un archivo y no sobre todos:
+- npm run test src/__test__/index.test.js 
+- jest RUTA | pero tenemos que instalar jest global | sudo npm i -g jest 
+
+describe() - describe una estructura una serie de pruebas dentro de un bloque una suite
+
+----Watch y Coverage ----
+Script para automatizar la ejecucion de las pruebas y cada vez que hacemos un cambio vuelve a ejecutar las pruebas
+"test:watch": "jest --watch"
+
+Coverage: Jest nos genera un reporte del alcanze de nuestras apps nos permite saber que tanto estamos probando nuestras apps y en el index.html podemos ver todo graficamente
+jest --coverage
