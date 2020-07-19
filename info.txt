@@ -38,3 +38,40 @@ Script para automatizar la ejecucion de las pruebas y cada vez que hacemos un ca
 
 Coverage: Jest nos genera un reporte del alcanze de nuestras apps nos permite saber que tanto estamos probando nuestras apps y en el index.html podemos ver todo graficamente
 jest --coverage
+
+
+---- PREPARAR PROYECTO ----
+https://github.com/gndx/platzi-store.git REPO
+npm i jest enzyme enzyme-adapter-react-16 -D
+
+Enzyme es una utilidad de prueba de JavaScript para React que hace que sea más fácil probar la salida de sus componentes React. También puede manipular, atravesar y, de alguna manera, simular el tiempo de ejecución dada la salida.
+
+Añadimos los scripts 
+"test": "jest",
+"test:watch": "jest --watch"
+
+creamos la carpeta __test__ donde viviran todas las pruebas de nuestro proyecto
+Tenemos que crear un adapter para tener la configuracion de este proyecto setupTest.js:
+    import { configure } from 'enzyme'
+    import Adapter from "enzyme-adapter-react-16"
+
+    configure({ adapter: new Adapter() })
+
+En el package.json creamos la configuracion necesaria para trabajar con este proyecto a lo ultimo del package para que este mas ordenado y ya podemos hacer pruebas:)
+"jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__test__/setupTest.js"
+    ]
+  }
+
+import { mount } from "enzyme" //nos permite montar el componente en el dom y trabajar con cada uno de sus items
+import React from "react"
+import Footer from "../../components/Footer";
+
+// describe mi suite para este componente
+describe('<Footer />', () => {
+    test('Render del componente Footer', () => {
+        const footer = mount(<Footer />)
+        expect(footer.length).toEqual(1)
+    })
+})
