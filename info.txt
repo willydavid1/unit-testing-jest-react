@@ -75,3 +75,19 @@ describe('<Footer />', () => {
         expect(footer.length).toEqual(1)
     })
 })
+
+
+
+------ MOCKS ------
+Los mocks son funciones que simulan acciones que deberia hacer nuestra app, es buena practica almacenarlos en su propia carpeta standar __mocks__ y dentro el styleMock.js 
+
+en el package.json especifico que los archivos con extension (styl|css) tome el MOCK del archivo styleMock.js
+"jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__test__/setupTest.js"
+    ],
+    "ModuleNameMapper": {
+      "\\.(styl|css)$": "<rootDir>/src/__mocks__/styleMock.js"
+    }
+  }
+  
