@@ -156,3 +156,27 @@ describe('Header SnapShot con un Mock', () => {
 PARA RESTRUCTURAR UN SNAPSHOT (imaginemos que el componente header necesita un cambio de clase y tenemos que refactorizar el snapshot):
 $comando => jest --updateSnapshot
 Es una práctica común agregar script de NPM => “test:update”: “jest --updateSnapshot”,
+
+
+
+
+---- Probar Actions Creators ----
+
+import actions from '../../actions';
+import ProductMock from '../../__mocks__/ProductMock';
+
+describe('Actions Creators', () => {
+  test('addToCard Action', () => {
+    const payload = ProductMock;
+    const expected = {
+      type: 'ADD_TO_CART',
+      payload,
+    };
+    expect(actions.addToCart(payload)).toEqual(expected); // testeamos el action con el objeto
+  });
+});
+
+PARA QUE SE VEAN LOS TEST QUE ESTAMOS CORRIENDO HAY QUE CONFIGURAR JEST PARA QUE SEA VERBOSO
+  "jest": {
+    "verbose": true
+  }
