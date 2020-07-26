@@ -90,4 +90,34 @@ en el package.json especifico que los archivos con extension (styl|css) tome el 
       "\\.(styl|css)$": "<rootDir>/src/__mocks__/styleMock.js"
     }
   }
-  
+
+
+------ Implementar provider mock ------
+¿Cuándo utilizar mount y cuándo utilizar shallow?
+mount --> Cuando necesitas el DOM
+shallow --> Solo necesitas algo particular del componente. shallow es una función de Enzyme que se utiliza para probar componentes de forma aislada, ya que no renderiza los subcomponentes.
+
+Las pruebas se realizan en el Header.test.js utilizando el <ProviderMock>:
+test('Render del componente Header', () => {
+    const header = shallow(
+      <ProviderMock>
+        <Header />
+      </ProviderMock>
+    );
+    expect(header.length).toEqual(1); // se monta el componente?
+  });
+
+Simulamos la accion de hacer click a un boton que maneja un evento onclick (comprobamos que se llame la funcion):
+test('Comprobar el boton de comprar', () => {
+    const handleAddToCart = jest.fn();// llamamos a jest.fn() para no llamar la funcion original del proyecto cuando se hace click en el boton (es una funcion de jest que no hace nada)
+    const wrapper = mount(
+      <ProviderMock>
+        <Product
+          product={ProductMock}
+          handleAddToCart={handleAddToCart}
+        />
+      </ProviderMock>,
+    );
+    wrapper.find('button').simulate('click'); // del componente Product busca el boton y simula un click
+    expect(handleAddToCart).toHaveBeenCalledTimes(1); // comprobamos si se llama la funcion 1 vez
+  });
