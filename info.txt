@@ -121,3 +121,38 @@ test('Comprobar el boton de comprar', () => {
     wrapper.find('button').simulate('click'); // del componente Product busca el boton y simula un click
     expect(handleAddToCart).toHaveBeenCalledTimes(1); // comprobamos si se llama la funcion 1 vez
   });
+
+
+
+
+
+---- Snapshot | react-test-renderer ----
+Los ** tests de Snapshot** son de gran utilidad cuando se quiere asegurar que la UI no cambia inesperadamente.
+Para usar snapshot debemos covertir un componente a un Object Json. | esto nos permite darle seguimiento a componentes o estructuras de datos.
+  npm i react-test-renderer -D
+
+// Si no existe el snapshot lo crea y despues lo comprueba | cuando volvemos a correr las pruebas y si ya existe este snapshot lo que hace es compararlos
+import { create } from 'react-test-renderer'; // create: Crea una instancia, con el elemento React pasado como argumento luego podemos usar metodos como .toJSON() que Devuelve un objeto que representa el árbol renderizado en formato JSON.
+describe('Footer Snapshot', () => {
+  test('Comprobar la UI del componente Footer', () => {
+    const footer = create(<Footer />);
+    expect(footer.toJSON()).toMatchSnapshot();
+  });
+});
+
+=> ahora si cambiamos el componente <Footer /> da error porque el snapshot no es igual | dato adicional se crea una carpeta llamada __snapshot__ y alli estan los snapshot de los compoentes
+
+describe('Header SnapShot con un Mock', () => {
+  test('Comprobar el SnapShot de Header con Mock', () => {
+    const header = create(
+      <ProviderMock>
+        <Header />
+      </ProviderMock>,
+    );
+    expect(header.toJSON()).toMatchSnapshot();
+  });
+});
+
+PARA RESTRUCTURAR UN SNAPSHOT (imaginemos que el componente header necesita un cambio de clase y tenemos que refactorizar el snapshot):
+$comando => jest --updateSnapshot
+Es una práctica común agregar script de NPM => “test:update”: “jest --updateSnapshot”,
