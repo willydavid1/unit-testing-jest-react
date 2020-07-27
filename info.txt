@@ -232,3 +232,8 @@ describe('Fetch API', () => {
     expect(fetch.mock.calls[0][0]).toEqual('https://google.com'); // garantiza que la llamada se esta ejecutando
   });
 });
+
+
+
+---- JEST + CI travis ----
+Nos regitramos en travis, enlazamos con github añadimos el repo, creamos un personal access tokens y guardamos esa key como varEnt en travis. por ultimo añadimos el .travis.yml al raiz del proyecto
